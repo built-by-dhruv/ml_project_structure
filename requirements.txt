@@ -3,4 +3,13 @@ pandas
 numpy
 matplotlib
 seaborn
+scikit-learn
+catboost
+xgboost
+# ipython
+# pyzmq
+# ptyprocess
+# ipykernel
+# decorator
+# Uncomment the next line if you want to build the packages 
 -e .

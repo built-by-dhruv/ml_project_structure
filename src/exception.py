@@ -4,7 +4,7 @@ import sys
 def error_message_detail(error, error_detail:sys):
     exc_type, exc_obj, exc_tb = error_detail.exc_info()
     fname = exc_tb.tb_frame.f_code.co_filename
-    error_message = f"Error Type: {exc_type}\nError Message: {exc_obj}\nError Line: {exc_tb.tb_lineno}\nError File: {fname}"
+    error_message = f"\nError Type: {exc_type}\nError Message: {exc_obj}\nError Line: {exc_tb.tb_lineno}\nError File: {fname}"
     return error_message
 
 
