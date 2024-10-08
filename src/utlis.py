@@ -19,6 +19,22 @@ def save_data_to_pickle(data, file_path):
     with open(file_path, 'wb') as file:
         dill.dump(data, file)
 
+def load_data_from_pickle(file_path):
+    """
+    Load data from a pickle file.
+
+    Parameters:
+    file_path (str): The path to the pickle file.
+
+    Returns:
+    any: The data loaded from the pickle file.
+    """
+
+    with open(file_path, 'rb') as file:
+        data = dill.load(file)
+
+    return data
+
 # Example usage:
 # data = {'key': 'value'}
 # save_data_to_pickle(data, 'data.pkl')
