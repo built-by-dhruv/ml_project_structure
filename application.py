@@ -42,9 +42,13 @@ iface = gr.Interface(
     ],
     outputs=gr.Number(label="Predicted Math Score"),
     title="Math Score Predictor",
-    description="Predict the math score based on various inputs.",
-    theme="compact"
+    description="Predict the math score based on various inputs."
 )
 
-# Launch the Gradio interface
-iface.launch(inbrowser=True)
+
+# Create a WSGI app
+app = gr.mount_gradio_app(gr.make_wrappers(), iface, path="/")
+
+# This line is for local testing, Elastic Beanstalk will ignore it
+if __name__ == "__main__":
+    iface.launch(server_name="0.0.0.0", server_port=8000)

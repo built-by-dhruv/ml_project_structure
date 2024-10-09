@@ -7,7 +7,7 @@ scikit-learn
 catboost
 xgboost
 dill
-gradio
+gradio==3.50.2
 # ipython
 # pyzmq
 # ptyprocess
