@@ -8,7 +8,7 @@ catboost
 xgboost
 dill
 gradio
-distlib # You can add this to your requirements.txt file
+setuptools # You can add this to your requirements.txt file
 # ipython
 # pyzmq
 # ptyprocess
