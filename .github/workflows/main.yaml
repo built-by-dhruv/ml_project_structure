@@ -3,7 +3,7 @@ name: workflow
 on:
   push:
     branches:
-      - flask2
+      - main
     paths-ignore:
       - 'README.md'
 
