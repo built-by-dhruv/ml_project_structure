@@ -12,8 +12,8 @@ class PredictPipeline:
         try:
             # Prepare the input data for the model
             # input_data
-            model_path = "D:/Codebase2O/ml_project_structure/artifacts/model.pkl"
-            preprocessor_path = "D:/Codebase2O/ml_project_structure/artifacts/preprocessor.pkl"
+            model_path = "artifacts/model.pkl"
+            preprocessor_path = "artifacts/preprocessor.pkl"
             model = load_data_from_pickle(model_path)
 
             # test_df = pd.read_csv("D:/Codebase2O/ml_project_structure/artifacts/test.csv").drop("math_score", axis=1)
