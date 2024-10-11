@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - preformancepredictionwebapp
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://resouce2.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_10c635f0b5a64917a8b8896edf00ee76 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_d17d127187cf4bdcb1e4cf0be81bcad0 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: resouce2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_10c635f0b5a64917a8b8896edf00ee76 }}/mltest2:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'preformancepredictionwebapp'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fba2c0127bb7481bb491184d256793ea }}
+        images: 'resouce2.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_10c635f0b5a64917a8b8896edf00ee76 }}/mltest2:${{ github.sha }}'
